@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Gaupu🎂</title>
+
+<!-- Bootstrap -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+body{
+    min-height: 100vh;
+    background-image: url("../cute.jpeg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    padding-right: 60px;
+    overflow: hidden;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.card{
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(15px);
+    border-radius:25px;
+    padding:40px;
+    text-align:center;
+    max-width:400px;
+    box-shadow:0 30px 80px rgba(0,0,0,0.5);
+    transition: 0.4s;
+}
+
+.card:hover{
+    transform: translateY(-10px) scale(1.03);
+}
+
+.heart{
+    position:absolute;
+    font-size:22px;
+    animation: floatUp 6s linear infinite;
+    opacity:0.8;
+}
+
+@keyframes floatUp{
+    0%{transform:translateY(0) scale(1);opacity:1;}
+    100%{transform:translateY(-100vh) scale(1.4);opacity:0;}
+}
+
+button{
+    border-radius:30px;
+    padding:10px 25px;
+    font-weight:600;
+    margin:10px;
+}
+
+@media screen and (max-width:768px){
+    body{
+        justify-content: center;
+        padding-right: 0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Music -->
+<audio id="bgMusic" loop>
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+</audio>
+
+<div class="card">
+    <h1>💖Gaupu💖</h1>
+    <p class="fs-3 mt-2">Do you want to see your special birthday wish? 🥳</p>
+
+    <button class="btn btn-success" onclick="yes()">YES 💖</button>
+    <button class="btn btn-danger" id="noBtn" onmouseover="noMove()">NO 🙈</button>
+
+    <h4 id="wish" class="mt-4"></h4>
+</div>
+
+<script>
+// YES button
+function yes(){
+    document.getElementById("bgMusic").play(); // ✔ FIXED
+
+    document.getElementById("wish").innerHTML = 
+    "🥰 Happy Birthday! 🎂🎉<br> I hope your birthday is as beautiful and full of love as you are ❤️<br>You deserve only the best, and I wish that for you. Best wishes, my love! ❤️🥰";
+    
+    hearts();
+}
+
+// NO button moves
+function noMove(){
+    let btn = document.getElementById("noBtn");
+    btn.style.position = "absolute";
+    btn.style.left = Math.random()*80 + "%";
+    btn.style.top = Math.random()*80 + "%";
+}
+
+// Hearts animation
+function hearts(){
+    for(let i=0;i<25;i++){
+        let h = document.createElement("div");
+        h.className="heart";
+        h.innerHTML="💖";
+        h.style.left=Math.random()*100+"vw";
+        h.style.bottom="0";
+        h.style.animationDuration = (Math.random()*3 + 3) + "s";
+        document.body.appendChild(h);
+        setTimeout(()=>h.remove(),6000);
+    }
+}
+</script>
+
+</body>
+</html>
